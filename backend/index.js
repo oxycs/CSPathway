@@ -13,13 +13,24 @@ app.get('/exampleget', (req, res) => {
   res.send('Hello World!')
 })
 
+// These OPTIONS headers allow for cross-origin requests, i.e. requests from a different domain (like from a frontend)
+app.options('/examplepost', function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.end();
+});
 
 // This is a simple POST request that logs the body of the request and sends a string back to the client
 // POST requests are used to send data to the server, like when submitting a user's replies to a form
 app.post('/examplepost', (req, res) => {
-    // log body of the request, json
+    // log body of the request to the console, for debugging purposes
+    console.log("RECIEVED FROM FRONTEND: ");
     console.log(req.body);
-    res.send('Hello World!')
+    // add Access-Control-Allow-Origin header to allow cross-origin requests
+    res.header("Access-Control-Allow-Origin", "*");
+    // send JSON back to the frontend
+    res.send({"textJsonKey": "TEXT SENT AS A REPLY TO FRONTEND"});
 })
 
 // This starts the app once all the endpoints have been defined
