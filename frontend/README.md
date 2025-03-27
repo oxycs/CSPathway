@@ -11,6 +11,9 @@ npm run dev
 npm run dev -- --open
 ```
 
+The home page is located at `./src/routes/+page.svelte`
+To add a page, make a folder in `./src/routes/pageNameHere`, and inside, add a `+page.svelte` file.
+
 ## Building
 
 To create a production version of your app:
